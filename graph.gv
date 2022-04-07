@@ -1,0 +1,13 @@
+digraph G {
+	0 [label="if block"]
+	0 -> 1 [label=" if x < 3"]
+	1 [label="if block"]
+	1 -> 2 [label=" if y > 3"]
+	2 [label="if block"]
+	2 -> 3 [label=" if y > 3"]
+	3 [label="while x < 10"]
+	3 -> 4
+	4 [label="for i in range(0, 10):
+"]
+	4 -> 5
+}

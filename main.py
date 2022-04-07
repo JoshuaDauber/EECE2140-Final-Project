@@ -1,10 +1,11 @@
-#This is where the main script will go
+import graphviz
 
 #options for statements
 ifs = []
 whiles = []
 fors = []
 
+#pasrsing the file
 with open('testInput.py') as f:
     for line in f:
         if '#' in line:
@@ -16,16 +17,23 @@ with open('testInput.py') as f:
         if 'for' in line:
             fors.append(line)
 
-print(ifs)
-print(whiles)
-print(fors)
-
 #split ifs between if and :
-ifConds = [ ifs[i].split('if')[1].split(':')[0].lstrip() for i in range(len(ifs)) ]
+ifConds = [ifs[i].split('if')[1].split(':')[0].lstrip()
+           for i in range(len(ifs))]
 #split whiles between while and :
-whileConds = [ whiles[i].split('while')[1].split(':')[0].lstrip() for i in range(len(whiles)) ]
-#split fors between for and :
+whileConds = [whiles[i].split('while')[1].split(
+    ':')[0].lstrip() for i in range(len(whiles))]
 
 
-print(ifConds)
-print(whileConds)
+#graph stuff
+g = graphviz.Digraph('G', filename='graph.gv')
+for i in range(len(ifs)):
+    g.node(str(i), 'if block') #swap this out for what actually happens in the if statement
+    g.edge(str(i), str(i+1), label=' if ' + ifConds[i])
+for i in range(len(whiles)):
+    g.node(str(i+len(ifs)), 'while ' + whileConds[i])
+    g.edge(str(i+len(ifs)), str(i+len(ifs)+1))
+for i in range(len(fors)):
+    g.node(str(i+len(ifs)+len(whiles)), fors[i])
+    g.edge(str(i+len(ifs)+len(whiles)), str(i+len(ifs)+len(whiles)+1))
+g.view()
