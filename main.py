@@ -37,3 +37,4 @@ for i in range(len(fors)):
     g.node(str(i+len(ifs)+len(whiles)), fors[i])
     g.edge(str(i+len(ifs)+len(whiles)), str(i+len(ifs)+len(whiles)+1))
 g.view()
+
