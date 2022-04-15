@@ -40,7 +40,7 @@ tokens = [
     (r'\:', 'COLON'),  # colon
     (r'\d+', 'INT'),  # integer
     (r'^-?\\d*(\\.\\d+)?$', 'NUMBER'),  # number
-    (r'^[a-zA-Z_][a-zA-Z0-9_]*$', 'NAME'),  # name
+    (r'[A-Za-z][A-Za-z0-9_]*', 'ID'),  # identifier
 ]
 
 
@@ -53,6 +53,7 @@ def lex(chars, toks):
             pat, tag = tok
             regex = re.compile(pat)
             match = regex.match(chars, pos)
+            print(match)  # testing print
             if match:
                 text = match.group(0)
                 if tag:
@@ -66,8 +67,8 @@ def lex(chars, toks):
     return tokens
 
 
-with open('test.py') as f:
+with open('testInput.py') as f:
     code = f.read()
-tokens = lex(code, tokens)
-for token in tokens:
+toke = lex(code, tokens)
+for token in toke:
     print(token)
