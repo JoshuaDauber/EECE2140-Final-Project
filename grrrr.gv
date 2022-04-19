@@ -1,0 +1,5 @@
+digraph G {
+	"if x<3" [shape=diamond]
+	"if y>3" [shape=diamond]
+	"if y>3" [shape=diamond]
+}

@@ -7,7 +7,4 @@ digraph G {
 	2 -> 3 [label=" if y > 3"]
 	3 [label="while x < 10"]
 	3 -> 4
-	4 [label="for i in range(0, 10):
-"]
-	4 -> 5
 }

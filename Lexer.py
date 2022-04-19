@@ -53,7 +53,6 @@ def lex(chars, toks):
             pat, tag = tok
             regex = re.compile(pat)
             match = regex.match(chars, pos)
-            print(match)  # testing print
             if match:
                 text = match.group(0)
                 if tag:
@@ -67,8 +66,3 @@ def lex(chars, toks):
     return tokens
 
 
-with open('testInput.py') as f:
-    code = f.read()
-toke = lex(code, tokens)
-for token in toke:
-    print(token)
