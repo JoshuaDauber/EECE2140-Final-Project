@@ -12,6 +12,8 @@
 import re
 
 tokens = [
+    (r'^[ ]+', 'INDENT'),  # indent
+    (r'[\r\n]+', 'NEWLINE'),  # newline
     (r'[ \n\t]+', None),  # whitespace
     (r'#[^\n]*', None),  # comment
     (r'\=', 'ASSIGN'),  # assignment
@@ -41,6 +43,7 @@ tokens = [
     (r'\d+', 'INT'),  # integer
     (r'^-?\\d*(\\.\\d+)?$', 'NUMBER'),  # number
     (r'[A-Za-z][A-Za-z0-9_]*', 'ID'),  # identifier
+    (r'.*', 'ALL')  # all
 ]
 
 
@@ -64,5 +67,3 @@ def lex(chars, toks):
         else:
             pos = match.end(0)
     return tokens
-
-
