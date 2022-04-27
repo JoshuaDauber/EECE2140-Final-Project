@@ -37,8 +37,16 @@ tokens = [
 
 
 class Lexer:
+    """Lexer."""
+
     @staticmethod
     def lex(chars, toks=tokens):
+        """lex.
+        Lexer
+
+        :param chars: input text
+        :param toks: list of token definitions
+        """
         pos = 0
         tokens = []
         while pos < len(chars):
