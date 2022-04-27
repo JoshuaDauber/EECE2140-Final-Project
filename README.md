@@ -4,11 +4,18 @@ Flowchartify is a program written in Python that will automatically generate flo
 
 ## Installation
 
-Installation TBD
+To install the main package, clone this repo
 
 ```bash
-pip install Flowchartify (Hopefully)
+git clone https://github.com/JoshuaDauber/EECE2140-Final-Project.git
 ```
+
+## Dependencies
+Pydot
+```bash
+pip install pydot
+```
+
 
 ## Usage
 
