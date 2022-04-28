@@ -1,7 +1,18 @@
+#control flow options
+# if - elif - else
+# for
+# while
+# break
+# continue
+# pass
+# def
+# class
+# import
+
 import re
 
 tokens = [
-    (r'[\t]', 'INDENT'),  # indent
+    (r'^[ ]+', 'INDENT'),  # indent
     (r'[\r\n]+', 'NEWLINE'),  # newline
     (r'[ \n\t]+', None),  # whitespace
     (r'#[^\n]*', None),  # comment
@@ -36,33 +47,23 @@ tokens = [
 ]
 
 
-class Lexer:
-    """Lexer."""
-
-    @staticmethod
-    def lex(chars, toks=tokens):
-        """lex.
-        Lexer
-
-        :param chars: input text
-        :param toks: list of token definitions
-        """
-        pos = 0
-        tokens = []
-        while pos < len(chars):
-            match = None
-            for tok in toks:
-                pat, tag = tok
-                regex = re.compile(pat)
-                match = regex.match(chars, pos) #returns None if no match
-                if match:
-                    text = match.group(0) #returns the text that matched
-                    if tag: #if tag is not None (not whitespace, or comment)
-                        token = (text, tag)
-                        tokens.append(token)
-                    break
-            if not match:
-                raise RuntimeError('invalid syntax')
-            else:
-                pos = match.end(0) #move to the end of the matched text
-        return tokens
+def lex(chars, toks):
+    pos = 0
+    tokens = []
+    while pos < len(chars):
+        match = None
+        for tok in toks:
+            pat, tag = tok
+            regex = re.compile(pat)
+            match = regex.match(chars, pos)
+            if match:
+                text = match.group(0)
+                if tag:
+                    token = (text, tag)
+                    tokens.append(token)
+                break
+        if not match:
+            raise RuntimeError('invalid syntax')
+        else:
+            pos = match.end(0)
+    return tokens

@@ -5,5 +5,6 @@ for i in range(1, 10):
 
 if var > 100:
     print(f'{var} is greater than 100')
+    line2
 
 print(var)
